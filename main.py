@@ -22,20 +22,19 @@ del f
 t=conf["token"]
 description=conf["description"]
 pfx=conf["prefix"]
-color=conf["color"]
+color=discord.Color(int(conf["color"].replace("#","").lower(),16))
+game=conf["game"]
 
-color=color.replace("#","").strip().lower()
-color=tuple([eval("0x"+color[0:1]),eval("0x"+color[2:4]),eval("0x"+color[5:])])
-color=discord.Color.from_rgb(*color)
 
-bot=commands.Bot(command_prefix=pfx,case_insensitive=True,description=description, intents=discord.Intents.all())
+bot=commands.Bot(command_prefix=pfx,case_insensitive=True,description=description,intents=discord.Intents.all())
 
 @bot.event
 async def on_ready():
+    await bot.change_presence(activity=discord.Game(name=game),status=discord.Status.dnd)
     div()
-    print('Logged in as')
+    print("Logged in as:")
     print(f"@{bot.user.name}#{bot.user.discriminator}")
-    print(bot.user.id)
+    print(f"<@!{bot.user.id}>")
     div()
 
 @bot.group()

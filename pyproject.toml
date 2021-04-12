@@ -9,6 +9,7 @@ license = "WTFPL"
 python = "^3.8"
 discord = "^1.0.1"
 jishaku = "^1.20.0"
+colour = "^0.1.5"
 
 [tool.poetry.dev-dependencies]
 
